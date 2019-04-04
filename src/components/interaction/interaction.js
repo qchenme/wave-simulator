@@ -69,7 +69,7 @@ class Interaction extends React.Component {
       currentAmpObjCustom
     } = this.state;
     return (
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 20, overflow: "hidden" }}>
         {isMobile ? (
           <Fragment>
             <Grid container spacing={16} alignItems="center">

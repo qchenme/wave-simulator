@@ -84,7 +84,7 @@ class Waves extends React.PureComponent {
           <Typography variant="overline" color="secondary">
             Harmonics
           </Typography>
-          <svg width={1.25 * width} height={1.25 * height}>
+          <svg width={width} height={1.25 * height}>
             {waves.map(obj => (
               <path
                 d={obj.path}
@@ -109,7 +109,7 @@ class Waves extends React.PureComponent {
           <Typography variant="overline" color="secondary">
             Sum Result
           </Typography>
-          <svg width={1.25 * width} height={1.25 * height}>
+          <svg width={width} height={1.25 * height}>
             {fourierSum.map((w, index) => (
               <path
                 d={w}
