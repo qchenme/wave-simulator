@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Fourier Series Simulator",
+  "name": "Interactive Fourier Series Simulator",
   "icons": [
     {
       "src": "favicon.ico",
