@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -32,14 +31,18 @@ class MobileFormat extends Component {
             textColor="primary"
             variant="fullWidth"
           >
-            <Tab label="Fourier Series Simulation" />
-            <Tab icon={<QuestionIcon />} />
+            <Tab
+              onClick={() => this.handleChangeIndex(0)}
+              label="Fourier Series Simulation"
+            />
+            <Tab
+              onClick={() => this.handleChangeIndex(1)}
+              icon={<QuestionIcon />}
+            />
           </Tabs>
         </AppBar>
-        <SwipeableViews index={value} onChangeIndex={this.handleChangeIndex}>
-          <Interaction isMobile={true} />
-          <Theory />
-        </SwipeableViews>
+        {value === 0 && <Interaction isMobile={true} />}
+        {value === 1 && <Theory />}
       </Fragment>
     );
   }
