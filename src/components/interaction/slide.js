@@ -24,14 +24,14 @@ const styles = {
 };
 
 class Slide extends React.Component {
-  state = { page: 1, rowsPerPage: 3 };
+  state = { page: 0, rowsPerPage: 3 };
 
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
 
   handleChangeRowsPerPage = event => {
-    this.setState({ rowsPerPage: event.target.value, page: 1 });
+    this.setState({ rowsPerPage: event.target.value, page: 0 });
   };
 
   render() {
