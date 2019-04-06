@@ -1,12 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { withStyles } from "@material-ui/core/styles";
 import Selection from "./selection";
 import Slide from "./slide";
 import Wave from "./wave";
 import { coefficients } from "../utils/helpers";
 import { waveshapeOptions } from "../utils/constants";
 import WaveDesktop from "./waveDesktop";
+
+const styles = {
+  root: {
+    overflow: "hidden",
+    padding: "20px"
+  }
+};
 
 class Interaction extends React.Component {
   state = {
@@ -74,7 +83,7 @@ class Interaction extends React.Component {
   };
 
   render() {
-    const { isMobile } = this.props;
+    const { isMobile, classes } = this.props;
     const {
       waveshape,
       limitHarmoNo,
@@ -82,7 +91,7 @@ class Interaction extends React.Component {
       currentAmpObjCustom
     } = this.state;
     return (
-      <div style={{ padding: 20, overflow: "hidden" }}>
+      <div className={classes.root}>
         {isMobile ? (
           <Paper elevation={0}>
             <Grid container spacing={16} alignItems="center">
@@ -132,4 +141,9 @@ class Interaction extends React.Component {
     );
   }
 }
-export default Interaction;
+
+Interaction.propTypes = {
+  isMobile: PropTypes.bool
+};
+
+export default withStyles(styles)(Interaction);

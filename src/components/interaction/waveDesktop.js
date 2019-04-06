@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import * as d3 from "d3";
@@ -134,5 +135,9 @@ class WavesDesktop extends React.PureComponent {
     );
   }
 }
+
+WavesDesktop.propTypes = {
+  currentAmpObj: PropTypes.object
+};
 
 export default WavesDesktop;

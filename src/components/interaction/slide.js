@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import Slider from "@material-ui/lab/Slider";
 import Card from "@material-ui/core/Card";
 import List from "@material-ui/core/List";
@@ -78,5 +79,10 @@ class Slide extends React.Component {
     );
   }
 }
+
+Slide.propTypes = {
+  currentAmpObj: PropTypes.object,
+  handleSlide: PropTypes.func
+};
 
 export default withStyles(styles)(Slide);
