@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
+import Card from "@material-ui/core/Card";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -11,11 +12,11 @@ import { waveshapeOptions } from "../utils/constants";
 const Selection = ({
   waveshape,
   harmoNo,
-  currentAmpInShape,
+  limitHarmoNo,
   handleHarmoChange,
   handleShapeChange
 }) => (
-  <Fragment>
+  <Card elevation={0}>
     <List>
       <ListItem>
         <FormControl variant="outlined" fullWidth>
@@ -45,16 +46,16 @@ const Selection = ({
               <OutlinedInput labelWidth={160} name="harmonic" id="harmonic" />
             }
           >
-            {Object.keys(currentAmpInShape).map(k => (
-              <MenuItem key={k} value={k}>
-                {k}
+            {[...Array(limitHarmoNo).keys()].map(k => (
+              <MenuItem key={k + 1} value={k + 1}>
+                {k + 1}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
       </ListItem>
     </List>
-  </Fragment>
+  </Card>
 );
 
 export default Selection;

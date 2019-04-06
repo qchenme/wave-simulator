@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Slider from "@material-ui/lab/Slider";
+import Card from "@material-ui/core/Card";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,6 +15,9 @@ const styles = {
     width: "90%",
     padding: "10px 0px",
     touchAction: "none"
+  },
+  typo: {
+    textAlign: "center"
   }
 };
 
@@ -22,10 +26,10 @@ class Slide extends React.Component {
     const { classes, currentAmpObj, handleSlide } = this.props;
 
     return (
-      <React.Fragment>
+      <Card elevation={0}>
         <List padding="dense">
           {Object.keys(currentAmpObj).map(k => (
-            <React.Fragment key={k}>
+            <Fragment key={k}>
               <ListItem>
                 <Grid container spacing={16} justify="space-between">
                   <Grid item xs={9} sm={5}>
@@ -52,15 +56,13 @@ class Slide extends React.Component {
                       margin="none"
                     />
                   </Grid>
-                  <Grid item xs={3} sm={1}>
-                    <Typography
-                      style={{ textAlign: "center" }}
-                      variant="overline"
-                    >
+                  <Grid item xs={3} sm={2}>
+                    <Typography className={classes.typo} variant="overline">
                       Amplitude
                     </Typography>
                     <Typography
-                      style={{ color: colors[k], textAlign: "center" }}
+                      className={classes.typo}
+                      style={{ color: colors[k] }}
                       variant="button"
                     >
                       {Math.abs(currentAmpObj[k])}
@@ -69,10 +71,10 @@ class Slide extends React.Component {
                 </Grid>
               </ListItem>
               <Divider />
-            </React.Fragment>
+            </Fragment>
           ))}
         </List>
-      </React.Fragment>
+      </Card>
     );
   }
 }

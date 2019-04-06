@@ -1,28 +1,41 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import Selection from "./selection";
 import Slide from "./slide";
 import Wave from "./wave";
-import { coefficients } from "../utils/constants";
+import { coefficients } from "../utils/helpers";
+import { waveshapeOptions } from "../utils/constants";
 import WaveDesktop from "./waveDesktop";
 
 class Interaction extends React.Component {
   state = {
     waveshape: 1,
+    limitHarmoNo: 10,
     harmoNo: 4,
-    harmoAmpSet: coefficients,
+    harmoAmpSet: {},
     currentAmpInShape: [],
     currentAmpObjCustom: {}
   };
 
   componentDidMount() {
-    const { harmoAmpSet, harmoNo, waveshape } = this.state;
-    const currentAmpInShape = { ...harmoAmpSet }[waveshape];
+    const { limitHarmoNo, harmoNo, waveshape } = this.state;
+    const harmoAmpSetToLimit = {};
+    waveshapeOptions.forEach(obj => {
+      const waveshapeAmps = {};
+      [...Array(limitHarmoNo).keys()].forEach(n => {
+        waveshapeAmps[n + 1] = coefficients(obj.key, n);
+      });
+      harmoAmpSetToLimit[obj.key] = waveshapeAmps;
+    });
+
+    const currentAmpInShape = { ...harmoAmpSetToLimit }[waveshape];
     let currentAmpObjCustom = {};
     [...Array(harmoNo).keys()].forEach(k => {
       currentAmpObjCustom[k + 1] = currentAmpInShape[k + 1];
     });
     this.setState({
+      harmoAmpSet: harmoAmpSetToLimit,
       currentAmpInShape: currentAmpInShape,
       currentAmpObjCustom: currentAmpObjCustom
     });
@@ -64,14 +77,14 @@ class Interaction extends React.Component {
     const { isMobile } = this.props;
     const {
       waveshape,
+      limitHarmoNo,
       harmoNo,
-      currentAmpInShape,
       currentAmpObjCustom
     } = this.state;
     return (
       <div style={{ padding: 20, overflow: "hidden" }}>
         {isMobile ? (
-          <Fragment>
+          <Paper elevation={0}>
             <Grid container spacing={16} alignItems="center">
               <Wave currentAmpObj={currentAmpObjCustom} />
             </Grid>
@@ -80,7 +93,7 @@ class Interaction extends React.Component {
                 <Selection
                   waveshape={waveshape}
                   harmoNo={harmoNo}
-                  currentAmpInShape={currentAmpInShape}
+                  limitHarmoNo={limitHarmoNo}
                   handleShapeChange={this.handleShapeChange}
                   handleHarmoChange={this.handleHarmoChange}
                 />
@@ -92,9 +105,9 @@ class Interaction extends React.Component {
                 />
               </Grid>
             </Grid>
-          </Fragment>
+          </Paper>
         ) : (
-          <Fragment>
+          <Paper elevation={0}>
             <Grid container spacing={16} alignContent="space-between">
               <Grid item lg={6} md={6}>
                 <WaveDesktop currentAmpObj={currentAmpObjCustom} />
@@ -103,7 +116,7 @@ class Interaction extends React.Component {
                 <Selection
                   waveshape={waveshape}
                   harmoNo={harmoNo}
-                  currentAmpInShape={currentAmpInShape}
+                  limitHarmoNo={limitHarmoNo}
                   handleShapeChange={this.handleShapeChange}
                   handleHarmoChange={this.handleHarmoChange}
                 />
@@ -113,7 +126,7 @@ class Interaction extends React.Component {
                 />
               </Grid>
             </Grid>
-          </Fragment>
+          </Paper>
         )}
       </div>
     );

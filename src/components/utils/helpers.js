@@ -2,6 +2,26 @@
  * Function helpers for waveform calculations
  */
 
+// coefficient calculation
+export const coefficients = (waveshape, harmonicNum) => {
+  switch (waveshape) {
+    case 1:
+      return (1 / (harmonicNum + 1)).toFixed(4);
+    case 2:
+      if ((harmonicNum + 1) % 2 === 0) return 0;
+      else return (1 / (harmonicNum + 1)).toFixed(4);
+    case 3:
+      if ((harmonicNum + 1) % 2 === 0) return 0;
+      else
+        return (
+          Math.pow(-1, harmonicNum / 2) / Math.pow(harmonicNum + 1, 2)
+        ).toFixed(4);
+
+    default:
+      break;
+  }
+};
+
 // y-axis values with step size 1/10 from -7 to 7
 const yAxisPt = () => {
   const pos = [...Array(70).keys()].map(n => {

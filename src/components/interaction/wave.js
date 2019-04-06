@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import * as d3 from "d3";
@@ -32,7 +33,7 @@ class Waves extends React.PureComponent {
     // Line generator
     const lineGenerate = d3
       .line()
-      .curve(d3.curveCardinal.tension(0.5))
+      .curve(d3.curveCardinal.tension(0.7))
       .x(d => state.xScale(d.x))
       .y(d => state.yScale(d.y));
 
@@ -79,7 +80,7 @@ class Waves extends React.PureComponent {
   render() {
     const { axes, fourierSum, waves, width, height } = this.state;
     return (
-      <React.Fragment>
+      <Card elevation={0}>
         <Grid item xs={12}>
           <Typography variant="overline" color="secondary">
             Harmonics
@@ -130,7 +131,7 @@ class Waves extends React.PureComponent {
             ))}
           </svg>
         </Grid>
-      </React.Fragment>
+      </Card>
     );
   }
 }

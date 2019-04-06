@@ -3,6 +3,7 @@ import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import QuestionIcon from "@material-ui/icons/HelpOutline";
 
 import Theory from "./theory";
 import Interaction from "./interaction";
@@ -31,13 +32,13 @@ class MobileFormat extends Component {
             textColor="primary"
             variant="fullWidth"
           >
-            <Tab label="Theory" />
-            <Tab label="Interaction" />
+            <Tab label="Fourier Series Simulation" />
+            <Tab icon={<QuestionIcon />} />
           </Tabs>
         </AppBar>
         <SwipeableViews index={value} onChangeIndex={this.handleChangeIndex}>
-          <Theory />
           <Interaction isMobile={true} />
+          <Theory />
         </SwipeableViews>
       </Fragment>
     );
