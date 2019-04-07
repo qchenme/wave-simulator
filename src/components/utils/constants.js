@@ -18,7 +18,9 @@ export const colors = {
   5: "#F50057",
   6: "#00C853",
   7: "#6200EA",
-  8: "#004d40"
+  8: "#004d40",
+  9: "#009688",
+  10: "#aa00ff"
 };
 
 export const graph_margin = { top: 10, right: 5, bottom: 10, left: 25 };
