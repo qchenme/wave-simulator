@@ -12,16 +12,22 @@ class Waves extends React.PureComponent {
     waves: [],
     fourierSum: [],
     axes: [],
-    width: 0.8 * window.innerWidth,
-    height: 0.8 * default_ratio * window.innerWidth,
+    width: this.props.waveRatio * window.innerWidth,
+    height: this.props.waveRatio * default_ratio * window.innerWidth,
     xScale: d3
       .scaleLinear()
       .domain([0, 2 * Math.PI])
-      .range([graph_margin.left, 0.8 * window.innerWidth - graph_margin.right]),
+      .range([
+        graph_margin.left,
+        this.props.waveRatio * window.innerWidth - graph_margin.right
+      ]),
     yScale: d3
       .scaleLinear()
       .domain([-2, 2])
-      .range([0.8 * default_ratio * window.innerWidth, graph_margin.top])
+      .range([
+        this.props.waveRatio * default_ratio * window.innerWidth,
+        graph_margin.top
+      ])
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -54,7 +60,7 @@ class Waves extends React.PureComponent {
 
   // setup new scale when window size changed
   handleResize = e => {
-    const newWidth = 0.8 * window.innerWidth;
+    const newWidth = this.props.waveRatio * window.innerWidth;
     const newHeight = default_ratio * newWidth;
     this.setState({
       width: newWidth,
@@ -80,13 +86,14 @@ class Waves extends React.PureComponent {
 
   render() {
     const { axes, fourierSum, waves, width, height } = this.state;
+    const { svgRatio } = this.props;
     return (
       <Card elevation={0}>
         <Grid item xs={12}>
           <Typography variant="overline" color="secondary">
             Harmonics
           </Typography>
-          <svg width={width} height={1.25 * height}>
+          <svg width={svgRatio * width} height={svgRatio * height}>
             {waves.map(obj => (
               <path
                 d={obj.path}
@@ -111,7 +118,7 @@ class Waves extends React.PureComponent {
           <Typography variant="overline" color="secondary">
             Sum Result
           </Typography>
-          <svg width={width} height={1.25 * height}>
+          <svg width={svgRatio * width} height={svgRatio * height}>
             {fourierSum.map((w, index) => (
               <path
                 d={w}
@@ -138,7 +145,9 @@ class Waves extends React.PureComponent {
 }
 
 Waves.propTypes = {
-  currentAmpObj: PropTypes.object
+  currentAmpObj: PropTypes.object,
+  svgRatio: PropTypes.number,
+  waveRatio: PropTypes.number
 };
 
 export default Waves;

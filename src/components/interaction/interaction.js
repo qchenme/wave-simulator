@@ -7,8 +7,7 @@ import Selection from "./selection";
 import Slide from "./slide";
 import Wave from "./wave";
 import { coefficients } from "../utils/helpers";
-import { waveshapeOptions } from "../utils/constants";
-import WaveDesktop from "./waveDesktop";
+import { waveshapeOptions, ratios } from "../utils/constants";
 
 const styles = {
   root: {
@@ -95,7 +94,11 @@ class Interaction extends React.Component {
         {isMobile ? (
           <Paper elevation={0}>
             <Grid container spacing={16} alignItems="center">
-              <Wave currentAmpObj={currentAmpObjCustom} />
+              <Wave
+                currentAmpObj={currentAmpObjCustom}
+                waveRatio={ratios.waveMobileRatio}
+                svgRatio={ratios.svgMobileRatio}
+              />
             </Grid>
             <Grid container spacing={16} alignItems="center">
               <Grid item xs={12}>
@@ -119,7 +122,11 @@ class Interaction extends React.Component {
           <Paper elevation={0}>
             <Grid container spacing={16} alignContent="space-between">
               <Grid item lg={6} md={6}>
-                <WaveDesktop currentAmpObj={currentAmpObjCustom} />
+                <Wave
+                  currentAmpObj={currentAmpObjCustom}
+                  waveRatio={ratios.waveDesktopRatio}
+                  svgRatio={ratios.svgDesktopRatio}
+                />
               </Grid>
               <Grid item lg={5} md={4}>
                 <Selection

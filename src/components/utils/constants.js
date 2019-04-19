@@ -23,5 +23,12 @@ export const colors = {
   10: "#aa00ff"
 };
 
+// Ratio & position matters
 export const graph_margin = { top: 10, right: 5, bottom: 10, left: 25 };
 export const default_ratio = 0.3;
+export const ratios = {
+  waveMobileRatio: 0.8,
+  waveDesktopRatio: 0.4,
+  svgMobileRatio: 1.25,
+  svgDesktopRatio: 2
+};
