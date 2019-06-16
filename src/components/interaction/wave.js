@@ -13,7 +13,7 @@ class Waves extends React.PureComponent {
     fourierSum: [],
     axes: [],
     width: this.props.waveRatio * window.innerWidth,
-    height: this.props.waveRatio * default_ratio * window.innerWidth,
+    height: this.props.waveRatio * default_ratio * window.innerHeight,
     xScale: d3
       .scaleLinear()
       .domain([0, 2 * Math.PI])
@@ -23,7 +23,7 @@ class Waves extends React.PureComponent {
       ]),
     yScale: d3
       .scaleLinear()
-      .domain([-2, 2])
+      .domain([-4, 4])
       .range([
         this.props.waveRatio * default_ratio * window.innerWidth,
         graph_margin.top
@@ -54,7 +54,6 @@ class Waves extends React.PureComponent {
       index: r.waveNo,
       path: lineGenerate(r.data)
     }));
-
     return { waves, fourierSum, axes };
   }
 

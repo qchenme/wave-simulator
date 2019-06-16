@@ -19,7 +19,7 @@ const styles = {
 class Interaction extends React.Component {
   state = {
     waveshape: 1,
-    limitHarmoNo: 10,
+    limitHarmoNo: 7,
     harmoNo: 4,
     harmoAmpSet: {},
     currentAmpInShape: [],
@@ -120,7 +120,12 @@ class Interaction extends React.Component {
           </Paper>
         ) : (
           <Paper elevation={0}>
-            <Grid container spacing={16} alignContent="space-between">
+            <Grid
+              container
+              spacing={16}
+              alignContent="space-between"
+              alignItems="center"
+            >
               <Grid item lg={6} md={6}>
                 <Wave
                   currentAmpObj={currentAmpObjCustom}
